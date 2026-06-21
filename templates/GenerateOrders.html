@@ -1,0 +1,96 @@
+{% load static %}
+<html>
+<head>
+<title>Food Supply & Supervision</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <script LANGUAGE="Javascript" >
+function validate(){
+	var x=document.forms["f1"]["t1"].value;
+	
+	var e=document.forms["f1"]["t4"].value;
+	var a=document.forms["f1"]["t5"].value;
+	var loc=document.forms["f1"]["t6"].value;
+	
+	if(x == null || x==""){
+		window.alert("Crop name must be enter");
+		document.f1.t1.focus();
+		return false;
+	}
+	
+	
+	if(e == null || e==""){
+		window.alert("Product description must be enter");
+		document.f1.t4.focus();
+		return false;
+	}
+	if(image == null || image==""){
+		window.alert("Product image must be upload");
+		document.f1.t5.focus();
+		return false;
+	}
+	if(loc == null || loc==""){
+		window.alert("Order current location must be enter");
+		document.f1.t6.focus();
+		return false;
+	}
+	return true;
+}
+		
+	
+	</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<center><font size="4" color="yellow">A Blockchain Based System for Safe Food Supply & Supervision</font></center>
+		</div>
+		<div id="slogan">
+			
+		</div>
+	</div>
+	<div id="menu">
+		<ul><center>
+      <li><a href="{% url 'AddStake' %}">Add Partners</a></li>
+	  <li><a href="{% url 'ViewStake' %}">View Partners</a></li>
+	  <li><a href="{% url 'GenerateOrders' %}">Generate Orders</a></li>
+	   <li><a href="{% url 'AdminTracing' %}">View Tracing</a></li>
+	    <li><a href="{% url 'RunML' %}">Run ML</a></li>
+	  <li><a href="{% url 'index' %}">Logout</a></li>		
+		</center></ul>
+<br class="clearfix" />
+				</div>
+			
+	<div id="splash">
+		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
+	</div>	
+			<center>
+<form name="f1" method="post" action={% url 'GenerateOrdersAction' %} enctype="multipart/form-data" OnSubmit="return validate()">
+	{% csrf_token %}<br/>
+   <h3><b>Generate New Order Screen</b></h3>
+   
+	<font size="" color="blue"><center>{{ data|safe }}</center></font>
+						
+						<table align="center" width="80" >
+			 <tr><td><font size="" color="black">Product&nbsp;Name</font></td><td><input type="text" name="t1" style="font-family: Comic Sans MS" size="30"/></td></tr>
+         
+		  
+		
+		<tr><td><font size="" color="black">Product&nbsp;Description</font></td><td><input type="text" name="t4" style="font-family: Comic Sans MS" size="80"/></td></tr>
+
+		<tr><td><font size="" color="black">Product&nbsp;Image</font></td><td><input type="file" name="t5" style="font-family: Comic Sans MS" size="60"/></td></tr>
+
+		<tr><td><font size="" color="black">Location&nbsp;Name</font></td><td><input type="text" name="t6" style="font-family: Comic Sans MS" size="60"/></td></tr>
+		
+		         
+			<tr><td></td><td><input type="submit" value="Generate Order">
+			</td>
+			</table>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				</div>	
+					
+				</div>
+				
+	</body>
+</html>

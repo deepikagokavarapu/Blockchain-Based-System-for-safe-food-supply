@@ -1,0 +1,97 @@
+{% load static %}
+<html>
+<head>
+<title>Food Supply & Supervision</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <script LANGUAGE="Javascript" >
+function validate(){
+	var x=document.forms["f1"]["username"].value;
+	var y=document.forms["f1"]["password"].value;
+	var c=document.forms["f1"]["contact"].value;
+	
+	
+	if(x == null || x==""){
+		window.alert("Username must be enter");
+		document.f1.username.focus();
+		return false;
+	}
+	if(y == null || y==""){
+		window.alert("Password must be enter");
+		document.f1.password.focus();
+		return false;
+	}
+	if(c == null || c==""){
+		window.alert("Contact No must be enter");
+		document.f1.contact.focus();
+		return false;
+	}
+	if(isNaN(c)){
+		window.alert("Please enter valid contact number");
+		document.f1.contact.focus();
+		return false;
+	}
+	return true;
+}
+		
+	
+	</script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<center><font size="4" color="yellow">A Blockchain Based System for Safe Food Supply & Supervision</font></center>
+		</div>
+		<div id="slogan">
+			
+		</div>
+	</div>
+	<div id="menu">
+		<ul><center>
+      <li><a href="{% url 'AddStake' %}">Add Partners</a></li>
+	  <li><a href="{% url 'ViewStake' %}">View Partners</a></li>
+	  <li><a href="{% url 'GenerateOrders' %}">Generate Orders</a></li>
+	   <li><a href="{% url 'AdminTracing' %}">View Tracing</a></li>
+	    <li><a href="{% url 'RunML' %}">Run ML</a></li>
+	  <li><a href="{% url 'index' %}">Logout</a></li>		
+		</center></ul>
+<br class="clearfix" />
+				</div>
+			
+	<div id="splash">
+		<img class="pic" src="{% static 'images/investor.jpg' %}" width="870" height="230" alt="" />
+	</div>	
+			<center>
+<form name="f1" method="post" action={% url 'AddStakeAction' %} OnSubmit="return validate()">
+	{% csrf_token %}<br/>
+   <h3><b>Add New Stakeholder Screen</b></h3>
+   
+	<font size="" color="blue"><center>{{ data|safe }}</center></font>
+						
+						<table align="center" width="80" >
+			 <tr><td><font size="" color="black">Username</font></td><td><input type="text" name="username" style="font-family: Comic Sans MS" size="30"/></td></tr>
+         
+		  
+		<tr><td><font size="" color="black">Password</font></td><td><input type="password" name="password" style="font-family: Comic Sans MS" size="30"/></td></tr>
+
+		
+		<tr><td><font size="" color="black">Contact&nbsp;No</font></td><td><input type="text" name="contact" style="font-family: Comic Sans MS" size="20"/></td></tr>
+
+			<tr><td><font size="" color="black">User&nbsp;Type</font></td><td><select name="type">
+		<option value="Raw Material Supplier">Raw Material Supplier</option>
+		<option value="Manufacturer">Manufacturer</option>
+		<option value="Distributor">Distributor</option>
+		<option value="Retailer">Retailer</option>
+		</td></tr>
+		         
+			<tr><td></td><td><input type="submit" value="Submit">
+			</td>
+			</table>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+				</div>	
+					
+				</div>
+				
+	</body>
+</html>
